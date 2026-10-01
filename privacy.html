@@ -20,15 +20,16 @@
 
 <h2>2. Information We Collect</h2>
 <p><strong>Information you provide.</strong> When you purchase a license, we (or our payment processor, on our behalf) collect your name, email address, and payment information necessary to complete the transaction and deliver your license key.</p>
-<p><strong>Information the Software collects.</strong> SessionTide runs locally on your Mac and communicates only with Pro Tools on the same machine via Avid's Pro Tools Scripting SDK (PTSL). It does not access, transmit, or store:</p>
+<p><strong>Information the Software collects.</strong> SessionTide runs locally on your Mac and communicates with Pro Tools on the same machine via Avid's Pro Tools Scripting SDK (PTSL) and, for some cleanup categories, local AppleScript/System Events automation. To identify what to clean up, the Software reads certain information already present in your session, including:</p>
 <ul>
 <li>File paths;</li>
 <li>Session or project names;</li>
 <li>Clip, track, or marker names;</li>
-<li>Audio or MIDI content;</li>
-<li>Any other content of your Pro Tools session.</li>
+<li>Plugin and preset names;</li>
+<li>Other metadata needed to identify items for cleanup.</li>
 </ul>
-<p>The only data sent over the network is for license activation: your license key and a non-identifying device identifier, sent to Gumroad's License Verification API solely to verify your license and enforce the device-activation limit in the End-User License Agreement. No session content is ever included in that check. The Software sends nothing besides this license check — no crash reports, no usage analytics, no telemetry.</p>
+<p>None of this ever leaves your Mac. It is not transmitted to us, to Gumroad, or to any other party, and we do not store it anywhere.</p>
+<p>The only data sent over the network by the Software is for license activation: your license key, sent to Gumroad's License Verification API solely to verify that the key is valid and has not been refunded or disputed. No session content, file paths, or device-identifying information is ever included in that check. The Software sends nothing besides this license check — no crash reports, no usage analytics, no telemetry.</p>
 <p><strong>Information collected automatically on the Site.</strong> Like most websites, the Site may use cookies or similar technologies for basic functionality and, if enabled, analytics (none at this time). This may include your IP address, browser type, and pages visited. We do not currently respond to browser "Do Not Track" signals.</p>
 
 <h2>3. How We Use Your Information</h2>
