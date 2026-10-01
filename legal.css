@@ -1,0 +1,40 @@
+:root{
+  --bg:#EEEEF0; --surface:#FAFAFC; --raised:#E7E7EB;
+  --border:#D8D8DE; --border-strong:#C4C4CC;
+  --text:#1A1A1D; --text-2:#55555E; --text-3:#6B6B73;
+  --amber:#B86F16; --amber-muted:#8A5A1F; --amber-wash: rgba(184,111,22,.10);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121215; --surface:#19191E; --raised:#202026;
+    --border:#26262D; --border-strong:#33333B;
+    --text:#EDEDF0; --text-2:#A1A1AA; --text-3:#7C7C86;
+    --amber:#E8A33D; --amber-muted:#B8894A; --amber-wash: rgba(232,163,61,.10);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0; background:var(--bg); color:var(--text);}
+body{
+  font-family:"Manrope",system-ui,sans-serif; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--amber)}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px;}
+nav{border-bottom:1px solid var(--border); padding-block:18px; margin-bottom:8px;}
+nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+.brand{font-family:"Sora",system-ui,sans-serif; font-weight:700; font-size:1.02rem; text-decoration:none; color:var(--text);}
+.back{font-size:.85rem; color:var(--text-2); text-decoration:none;}
+.back:hover{color:var(--text);}
+main{padding-block:40px 80px;}
+h1{font-family:"Sora",system-ui,sans-serif; font-weight:700; font-size:1.8rem; margin:0 0 6px;}
+.revised{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--text-3); margin-bottom:36px;}
+h2{font-family:"Sora",system-ui,sans-serif; font-weight:700; font-size:1.1rem; margin:34px 0 10px;}
+p{color:var(--text-2); font-size:.95rem; margin:0 0 14px;}
+ul{color:var(--text-2); font-size:.95rem; padding-left:22px; margin:0 0 14px;}
+li{margin-bottom:6px;}
+strong{color:var(--text);}
+footer{border-top:1px solid var(--border); padding-block:28px; margin-top:20px;}
+.foot-links{display:flex; gap:18px; font-size:.82rem; color:var(--text-2); flex-wrap:wrap;}
+.foot-links a{text-decoration:none; color:var(--text-2);}
+.foot-links a:hover{color:var(--text);}
