@@ -69,7 +69,27 @@
   @media (max-width:640px){ .nav-links{display:none;} }
 
   /* ---------- hero ---------- */
-  .hero{padding-top:clamp(52px,10vw,96px); padding-bottom:clamp(40px,7vw,72px);}
+  /* hero-console.jpg: photo by Michael Weibel on Unsplash (Unsplash License,
+     free for commercial use, no attribution required - credited here anyway).
+     https://unsplash.com/photos/gray-and-white-audio-mixer-GiwH8SU1S7c */
+  .hero{
+    position:relative; isolation:isolate; overflow:hidden;
+    margin-inline:calc(50% - 50vw); padding-inline:max(16px, calc(50vw - 504px));
+    padding-top:clamp(52px,10vw,96px); padding-bottom:clamp(40px,7vw,72px);
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background:
+      linear-gradient(100deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 88%, transparent) 42%, color-mix(in srgb, var(--bg) 45%, transparent) 72%, color-mix(in srgb, var(--bg) 18%, transparent) 100%),
+      url('hero-console.jpg') center 38% / cover no-repeat;
+  }
+  @media (max-width:640px){
+    .hero::before{
+      background:
+        linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 92%, transparent) 55%, color-mix(in srgb, var(--bg) 60%, transparent) 100%),
+        url('hero-console.jpg') center 30% / cover no-repeat;
+    }
+  }
   .hero-mark{width:120px; height:120px; margin-bottom:22px;}
   .hero h1{font-size:clamp(2.1rem,5.2vw,3.4rem); line-height:1.06;}
   .hero h1 .accent{color:var(--amber);}
