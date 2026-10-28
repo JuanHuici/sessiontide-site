@@ -148,6 +148,38 @@
   .feat h3{font-size:1.02rem; font-family:"Manrope",sans-serif; font-weight:700;}
   .feat p{margin:0; color:var(--text-2); font-size:.9rem; line-height:1.5;}
 
+  /* ---------- languages ---------- */
+  /* Screenshots live in screenshots/ (app-en.webp, app-es.webp, toggle.webp).
+     Until they exist, the frames show a dashed placeholder instead of a broken image. */
+  .lang{display:grid; grid-template-columns:1.45fr .55fr; gap:32px; align-items:start;}
+  .lang-switch{
+    display:inline-flex; padding:3px; gap:2px; border-radius:9px;
+    background:var(--raised); border:1px solid var(--border); margin-bottom:16px;
+  }
+  .lang-switch button{
+    font:600 .82rem "IBM Plex Mono",monospace; letter-spacing:.06em; color:var(--text-2);
+    background:none; border:0; border-radius:7px; padding:7px 14px; cursor:pointer;
+  }
+  .lang-switch button[aria-pressed="true"]{background:var(--amber); color:#141210;}
+  .shot{
+    position:relative; border-radius:12px; overflow:hidden;
+    border:1px dashed var(--border-strong); background:var(--sidebar);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--text-3);
+  }
+  .shot-app{aspect-ratio:16/10;}
+  .shot-toggle{aspect-ratio:3/1;}
+  .shot img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity .25s ease;}
+  .shot img.off{opacity:0;}
+  .shot.loaded{border-style:solid; border-color:transparent; background:none;}
+  .shot.loaded > span{visibility:hidden;}
+  .lang-side h2{font-size:clamp(1.5rem,3vw,2rem); margin-top:8px;}
+  .lang-side p{color:var(--text-2); font-size:.92rem; margin:12px 0 0;}
+  .lang-side .shot{margin-top:20px;}
+  .lang-side .caption{font-size:.78rem; color:var(--text-3); margin-top:8px;}
+  @media (prefers-reduced-motion:reduce){ .shot img{transition:none;} }
+  @media (max-width:760px){ .lang{grid-template-columns:1fr;} .lang-side{order:-1;} }
+
   /* ---------- sweep-all banner ---------- */
   .banner{
     border:1px solid var(--border); border-radius:16px; background:var(--surface);
@@ -291,6 +323,32 @@
     </div>
   </section>
 
+  <section id="languages">
+    <div class="lang">
+      <div>
+        <div class="lang-switch" role="group" aria-label="Screenshot language">
+          <button type="button" data-lang="en" aria-pressed="true">ENGLISH</button>
+          <button type="button" data-lang="es" aria-pressed="false">ESPAÑOL</button>
+        </div>
+        <div class="shot shot-app">
+          <span>Screenshot coming soon</span>
+          <img src="screenshots/app-en.webp" data-lang="en" alt="SessionTide main window in English">
+          <img src="screenshots/app-es.webp" data-lang="es" class="off" alt="SessionTide main window in Spanish">
+        </div>
+      </div>
+      <div class="lang-side">
+        <div class="eyebrow">LANGUAGES</div>
+        <h2>English or Spanish.</h2>
+        <p>The whole interface ships in both languages. Pick yours from the main window, bottom-left corner.</p>
+        <div class="shot shot-toggle">
+          <span>Toggle screenshot</span>
+          <img src="screenshots/toggle.webp" alt="Language toggle in the bottom-left corner of the SessionTide main window">
+        </div>
+        <div class="caption">Bottom-left of the main window.</div>
+      </div>
+    </div>
+  </section>
+
   <section id="how">
     <div class="banner">
       <div>
@@ -346,6 +404,7 @@
       <div class="price-note" style="margin-left:6px;">Activate on up to 3 machines</div>
       <ul class="price-list">
         <li>All six cleanup categories + Sweep All / Batch Sweep All</li>
+        <li>English and Spanish interface</li>
         <li>Free updates within the major version</li>
         <li>14-day refund window</li>
       </ul>
@@ -372,6 +431,10 @@
       <p>No. SessionTide is an independent tool built on Avid's public Pro Tools Scripting SDK (PTSL). It is not affiliated with, endorsed by, or sponsored by Avid Technology, Inc.</p>
     </div>
     <div class="faq-item">
+      <h3>What languages is SessionTide available in?</h3>
+      <p>English and Spanish. Switch between them from the toggle in the bottom-left corner of the main window.</p>
+    </div>
+    <div class="faq-item">
       <h3>What if it doesn't work for me?</h3>
       <p>14-day refund window — see the Terms of Use for details.</p>
     </div>
@@ -394,5 +457,22 @@
     <div class="foot-disclaimer">SessionTide is an independent product and is not affiliated with, endorsed by, or sponsored by Avid Technology, Inc. Pro Tools is a trademark of Avid Technology, Inc.</div>
   </div>
 </footer>
+
+<script>
+  // Language screenshots: hide the placeholder once an image loads, drop it if the file is missing.
+  document.querySelectorAll('.shot img').forEach(function(img){
+    function ok(){ img.closest('.shot').classList.add('loaded'); }
+    if (img.complete && img.naturalWidth) ok();
+    img.addEventListener('load', ok);
+    img.addEventListener('error', function(){ img.remove(); });
+  });
+  document.querySelectorAll('.lang-switch button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var lang = btn.dataset.lang;
+      document.querySelectorAll('.lang-switch button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      document.querySelectorAll('.shot-app img').forEach(function(img){ img.classList.toggle('off', img.dataset.lang !== lang); });
+    });
+  });
+</script>
 
 </body></html>
